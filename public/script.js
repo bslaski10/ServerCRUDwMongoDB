@@ -155,6 +155,7 @@ console.log("working4");
 
     if (response.status != 200) {
         console.log("Error posting data");
+        alert("Please make sure all boxes contain atleast 3 letters.")
     }
 
     team = await response.json();

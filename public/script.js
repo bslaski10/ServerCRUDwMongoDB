@@ -90,23 +90,31 @@ const displayDetails = (team) => {
     populateForm(team);
 };
 
-const deleteTeam = async(team) => {
-    let response = await fetch(`/api/teams/${team._id}`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json;charset=utf-8"
+const deleteTeam = async (team) => {
+    const confirmation = confirm("Are you sure you want to delete this team?");
+    
+    if (confirmation) {
+        try {
+            let response = await fetch(`/api/teams/${team._id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json;charset=utf-8"
+                }
+            });
+
+            if (response.status === 200) {
+                showTeams();
+                document.getElementById("team-details").innerHTML = "";
+                resetForm();
+            } else {
+                console.log("Error deleting team");
+            }
+        } catch (error) {
+            console.error("Error:", error);
         }
-    });
+    } else {}
+};
 
-    if (response.status != 200) {
-        console.log("error deleting");
-        return;
-    }
-
-    showTeams();
-    document.getElementById("team-details").innerHTML = "";
-    resetForm();
-}
 
 const populateForm = (team) => {
     const form = document.getElementById("add-team-form");

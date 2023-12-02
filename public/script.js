@@ -23,6 +23,8 @@ const showTeams = async () => {
             const h3 = document.createElement("h1");
             h3.innerHTML = `${team.name}`;
             a.append(h3);
+            
+
 
             a.onclick = (e) => {
                 e.preventDefault();
@@ -114,21 +116,24 @@ const addTeam = async (e) => {
     const form = document.getElementById("add-team-form");
     const formData = new FormData(form);
     let response;
-
+console.log("working1");
     if (form._id.value == -1) {
         formData.delete("_id");
-
+console.log("working2");
      response = await fetch("/api/teams", {
             method: "POST",
             body: formData
      });
     }
     else {
-       console.log(formData);
-        response = await fetch(`/api/teams/${team._id}`, {
+console.log("working3");
+       console.log(...formData);
+       console.log("ID IS " + form._id.value);
+        response = await fetch(`/api/teams/${form._id.value}`, {
             method: "PUT",
              body: formData
        });
+console.log("working4");
     }
 
 

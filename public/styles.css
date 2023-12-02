@@ -110,6 +110,11 @@ a {
     transition: opacity 0.3s ease-in-out;
 }
 
+.team img {
+    max-width: 90%;
+    display: block;
+    margin: auto;
+}
 
 /* Typography */
 body{

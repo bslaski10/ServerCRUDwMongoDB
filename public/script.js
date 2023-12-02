@@ -24,6 +24,9 @@ const showTeams = async () => {
             h3.innerHTML = `${team.name}`;
             a.append(h3);
             
+            const img = document.createElement("img");
+            img.src = team.logo; 
+            a.append(img); 
 
 
             a.onclick = (e) => {
@@ -67,6 +70,11 @@ const displayDetails = (team) => {
         playersList.append(li);
         li.innerHTML = player;
     });
+
+    const img = document.createElement("img");
+    img.src = team.logo;
+    teamDetails.append(img);
+
 
     editLink.onclick = (e) => {
         e.preventDefault();
